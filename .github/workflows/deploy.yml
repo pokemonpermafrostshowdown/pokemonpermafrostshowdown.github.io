@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # - name: Copy config
-      #   env:
-      #     CONFIG_JS: ${{ vars.CONFIG_JS }}
-      #   run: echo "$CONFIG_JS" >> config/config.js
+      - name: Copy config
+        env:
+          CONFIG_JS: ${{ vars.CONFIG_JS }}
+        run: echo "$CONFIG_JS" >> config/config.js
 
       - name: Build client
         run: node build full
