@@ -71,6 +71,7 @@ Config.translationCachebuster = ${JSON.stringify(translationCachebuster)};
 Config.routes = {
 	root: '${routes.root}',
 	client: '${routes.client}',
+  login: '${routes.login}',
 	dex: '${routes.dex}',
 	replays: '${routes.replays}',
 	users: '${routes.users}',

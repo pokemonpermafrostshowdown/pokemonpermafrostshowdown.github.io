@@ -455,12 +455,9 @@ export const PSLoginServer = new class {
 		// 	return Promise.resolve(null);
 		// }
 		data.act = act;
-		let url = '/~~' + PS.server.id + '/action.php';
-		if (location.pathname.endsWith('.html')) {
-			url = 'https://' + Config.routes.client + url;
-			if (typeof POKEMON_SHOWDOWN_TESTCLIENT_KEY === 'string') {
-				data.sid = POKEMON_SHOWDOWN_TESTCLIENT_KEY.replace(/%2C/g, ',');
-			}
+		let url = 'https://' + Config.routes.login + '/~~' + PS.server.id + '/action.php';
+		if (typeof POKEMON_SHOWDOWN_TESTCLIENT_KEY === 'string') {
+			data.sid = POKEMON_SHOWDOWN_TESTCLIENT_KEY.replace(/%2C/g, ",");
 		}
 		return PSStorage.request('POST', url, data) || Net(url).get({ method: 'POST', body: data }).then(
 			res => res ?? null

@@ -1,6 +1,7 @@
 {
     "root": "pokemonshowdown.com",
     "client": "pokemonpermafrostshowdown.github.io",
+    "login": "play.pokemonshowdown.com",
     "dex": "dex.pokemonshowdown.com",
     "replays": "replay.pokemonshowdown.com",
     "users": "pokemonshowdown.com/users",
