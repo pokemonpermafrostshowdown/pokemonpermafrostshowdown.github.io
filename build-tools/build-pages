@@ -10,7 +10,7 @@ cp -r js/. ../dist-pages/js/
 cp -r style/. ../dist-pages/style/
 cp -r data/. ../dist-pages/data/
 cp -r sprites/. ../dist-pages/sprites/
-cp -r config/config.js ../dist-pages/config/
+cp -r config/config.js ../config/testclient-key.js ../dist-pages/config/
 cp -r fx/. ../dist-pages/fx/
 cp *.png *.ico manifest.json ../dist-pages/ 2>/dev/null || true
 
