@@ -230,6 +230,8 @@ function cachebust(contents, sourceDir) {
 }
 
 // add hashes to js and css files and rewrite URLs
+let testclientOldContents = fs.readFileSync('play.pokemonshowdown.com/testclient-old.html', UTF8);
+testclientOldContents = testclientOldContents.replace(/\?\?/g, `?${Math.random()}`);
 let indexOldContents = fs.readFileSync('play.pokemonshowdown.com/index-old.html', UTF8);
 let indexTestContents = '';
 if (hasTestConfig || hasTestHead) {
@@ -284,6 +286,7 @@ if (indexTestContents) {
 indexOldContents = indexOldContents.replace(/<!-- config\/head-custom\.html -->/g, () => customHead);
 indexNewContents = indexNewContents.replace(/<!-- config\/head-custom\.html -->/g, () => customHead);
 
+fs.writeFileSync('play.pokemonshowdown.com/caches/testclient-old.html', testclientOldContents);
 fs.writeFileSync('play.pokemonshowdown.com/caches/index-old.html', indexOldContents);
 if (indexTestContents) {
 	fs.writeFileSync('play.pokemonshowdown.com/caches/index-test.html', indexTestContents);

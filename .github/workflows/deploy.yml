@@ -21,7 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Copy config
+      - name: Write dummy testclient key
+        run: echo "const POKEMON_SHOWDOWN_TESTCLIENT_KEY = 'a';" >> config/testclient-key.js
+
+      - name: Write config
         env:
           CONFIG_JS: ${{ vars.CONFIG_JS }}
         run: echo "$CONFIG_JS" >> config/config.js

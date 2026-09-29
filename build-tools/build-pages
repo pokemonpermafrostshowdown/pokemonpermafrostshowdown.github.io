@@ -17,5 +17,4 @@ cp *.png *.ico manifest.json ../dist-pages/ 2>/dev/null || true
 find ../dist-pages -name '*.php' -delete
 find ../dist-pages -name '*.map' -delete
 
-cp caches/index-old.html ../dist-pages/index.html
-cp caches/crossprotocol.html ../dist-pages/crossprotocol.html
+cp caches/testclient-old.html ../dist-pages/index.html
