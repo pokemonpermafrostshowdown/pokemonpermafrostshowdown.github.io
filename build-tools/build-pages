@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p dist-pages
+cd play.pokemonshowdown.com
+
+mkdir -p ../dist-pages/js ../dist-pages/style ../dist-pages/data ../dist-pages/sprites ../dist-pages/config ../dist-pages/fx
+cp -r js/. ../dist-pages/js/
+cp -r style/. ../dist-pages/style/
+cp -r data/. ../dist-pages/data/
+cp -r sprites/. ../dist-pages/sprites/
+cp -r config/config.js ../dist-pages/config/
+cp -r fx/. ../dist-pages/fx/
+cp *.png *.ico manifest.json ../dist-pages/ 2>/dev/null || true
+
+find ../dist-pages -name '*.php' -delete
+find ../dist-pages -name '*.map' -delete
+
+cp caches/index-old.html ../dist-pages/index.html
+cp caches/crossprotocol.html ../dist-pages/crossprotocol.html
