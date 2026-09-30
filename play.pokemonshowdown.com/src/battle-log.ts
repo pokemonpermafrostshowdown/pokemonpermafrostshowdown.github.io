@@ -1192,7 +1192,7 @@ export class BattleLog {
 	}
 
 	static usernameColor(name: ID) {
-		if (Config.customcolors[name]) return Config.customcolors[name];
+		if (Config.customcolors[name]) return `#${Config.customcolors[name]}`;
 		if (this.colorCache[name]) return this.colorCache[name];
 		const hash = MD5(name);
 		let H = parseInt(hash.substr(4, 4), 16) % 360; // 0 to 360
