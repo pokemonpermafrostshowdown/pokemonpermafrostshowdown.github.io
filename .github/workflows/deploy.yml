@@ -21,6 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Restore cached server
+        uses: actions/cache@v4
+        with:
+          path: caches/pokemon-showdown
+          key: server-repo-${{ github.run_id }}
+          restore-keys: |
+            server-repo-
+
       - name: Write dummy testclient key
         run: echo "const POKEMON_SHOWDOWN_TESTCLIENT_KEY = 'a';" >> config/testclient-key.js
 
