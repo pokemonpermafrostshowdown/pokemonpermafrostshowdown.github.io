@@ -308,6 +308,9 @@ function toId() {
 					// success!
 					self.set('registered', data.curuser);
 					self.finishRename(name, data.assertion);
+
+					Storage.prefs('user', name);
+					Storage.prefs('pass', password);
 				} else {
 					// wrong password
 					if (special === '@gmail') {
@@ -338,28 +341,34 @@ function toId() {
 				 * See `finishRename` above for a list of events this can emit.
 				 */
 				this.challstr = challstr;
-				var self = this;
-				$.post(this.getActionPHP(), {
-					act: 'upkeep',
-					challstr: this.challstr
-				}, Storage.safeJSON(function (data) {
-					self.loaded = true;
-					if (!data.username) {
-						app.topbar.updateUserbar();
-						return;
-					}
+				this.loaded = true;
+				if (Storage.prefs('user') && Storage.prefs('pass')) {
+					this.passwordRename(Storage.prefs('user'), Storage.prefs('pass'));
+				} else {
+					app.topbar.updateUserbar();
+				}
+				// var self = this;
+				// $.post(this.getActionPHP(), {
+				// 	act: 'upkeep',
+				// 	challstr: this.challstr
+				// }, Storage.safeJSON(function (data) {
+				// 	self.loaded = true;
+				// 	if (!data.username) {
+				// 		app.topbar.updateUserbar();
+				// 		return;
+				// 	}
 
-					// | , ; are not valid characters in names
-					data.username = data.username.replace(/[\|,;]+/g, '');
+				// 	// | , ; are not valid characters in names
+				// 	data.username = data.username.replace(/[\|,;]+/g, '');
 
-					if (data.loggedin) {
-						self.set('registered', {
-							username: data.username,
-							userid: toUserid(data.username)
-						});
-					}
-					self.finishRename(data.username, data.assertion);
-				}), 'text');
+				// 	if (data.loggedin) {
+				// 		self.set('registered', {
+				// 			username: data.username,
+				// 			userid: toUserid(data.username)
+				// 		});
+				// 	}
+				// 	self.finishRename(data.username, data.assertion);
+				// }), 'text');
 			}
 		},
 		/**
@@ -370,6 +379,10 @@ function toId() {
 				act: 'logout',
 				userid: this.get('userid')
 			});
+
+			Storage.prefs('user', false);
+			Storage.prefs('pass', false);
+
 			app.send('/logout');
 			app.trigger('init:socketclosed', "You have been logged out and disconnected.<br /><br />If you wanted to change your name while staying connected, use the 'Change Name' button or the '/nick' command.", false);
 			app.socket.close();
