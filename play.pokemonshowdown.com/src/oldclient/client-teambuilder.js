@@ -1355,9 +1355,9 @@
 						buf += '<span class="detailcell"><label>Gmax</label>' + (set.gigantamax || species.forme === 'Gmax' ? 'Yes' : 'No') + '</span>';
 					}
 				}
-				if (this.curTeam.gen === 9 && !isChampions) {
-					buf += '<span class="detailcell"><label>Tera Type</label>' + (set.teraType || species.requiredTeraType || species.types[0]) + '</span>';
-				}
+				// if (this.curTeam.gen === 9 && !isChampions) {
+				// 	buf += '<span class="detailcell"><label>Tera Type</label>' + (set.teraType || species.requiredTeraType || species.types[0]) + '</span>';
+				// }
 			}
 			buf += '</button></div></div>';
 
@@ -2974,16 +2974,16 @@
 				buf += '</select></div></div>';
 			}
 
-			if (this.curTeam.gen === 9 && !isChampions) {
-				buf += '<div class="formrow"><label class="formlabel" title="Tera Type">Tera Type:</label><div>';
-				buf += '<select name="teratype" class="button">';
-				var types = Dex.types.all();
-				var teraType = set.teraType || species.requiredTeraType || species.types[0];
-				for (var i = 0; i < types.length; i++) {
-					buf += '<option value="' + types[i].name + '"' + (teraType === types[i].name ? ' selected="selected"' : '') + '>' + types[i].name + '</option>';
-				}
-				buf += '</select></div></div>';
-			}
+			// if (this.curTeam.gen === 9 && !isChampions) {
+			// 	buf += '<div class="formrow"><label class="formlabel" title="Tera Type">Tera Type:</label><div>';
+			// 	buf += '<select name="teratype" class="button">';
+			// 	var types = Dex.types.all();
+			// 	var teraType = set.teraType || species.requiredTeraType || species.types[0];
+			// 	for (var i = 0; i < types.length; i++) {
+			// 		buf += '<option value="' + types[i].name + '"' + (teraType === types[i].name ? ' selected="selected"' : '') + '>' + types[i].name + '</option>';
+			// 	}
+			// 	buf += '</select></div></div>';
+			// }
 
 			buf += '</form>';
 			if (species.cosmeticFormes) {
@@ -2998,7 +2998,7 @@
 			var set = this.curSet;
 			if (!set) return;
 			var species = this.curTeam.dex.species.get(set.species);
-			var isChampions = this.curTeam.format.includes('champions');
+			// var isChampions = this.curTeam.format.includes('champions');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex');
@@ -3061,12 +3061,12 @@
 			}
 
 			// Tera type
-			var teraType = this.$chart.find('select[name=teratype]').val();
-			if (!isChampions && Dex.types.isName(teraType)) {
-				set.teraType = teraType || species.requiredTeraType || species.types[0];
-			} else {
-				delete set.teraType;
-			}
+			// var teraType = this.$chart.find('select[name=teratype]').val();
+			// if (!isChampions && Dex.types.isName(teraType)) {
+			// 	set.teraType = teraType || species.requiredTeraType || species.types[0];
+			// } else {
+			// 	delete set.teraType;
+			// }
 
 			// update details cell
 			var buf = '';
@@ -3093,9 +3093,9 @@
 						buf += '<span class="detailcell"><label>Gmax</label>' + (set.gigantamax || species.forme === 'Gmax' ? 'Yes' : 'No') + '</span>';
 					}
 				}
-				if (this.curTeam.gen === 9 && !isChampions) {
-					buf += '<span class="detailcell"><label>Tera Type</label>' + (set.teraType || species.requiredTeraType || species.types[0]) + '</span>';
-				}
+				// if (this.curTeam.gen === 9 && !isChampions) {
+				// 	buf += '<span class="detailcell"><label>Tera Type</label>' + (set.teraType || species.requiredTeraType || species.types[0]) + '</span>';
+				// }
 			}
 			this.$('button[name=details]').html(buf);
 
