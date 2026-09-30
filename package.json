@@ -31,6 +31,7 @@
     "@types/d3": "^3.5.53",
     "@types/jquery": "^3.5.3",
     "@types/node": "^26.2.0",
+    "canvas": "^3.2.3",
     "eslint": "^9.20.1",
     "globals": "^16.0.0",
     "preact": "^10.29.2",
