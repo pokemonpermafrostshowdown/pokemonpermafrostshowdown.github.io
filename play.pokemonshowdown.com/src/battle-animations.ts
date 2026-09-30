@@ -582,34 +582,34 @@ export class BattleScene implements BattleSceneStub {
 		this.gen = gen;
 		this.activeCount = this.battle.nearSide?.active.length || 1;
 
-		// const rated = this.battle.rated;
-		// let bg: string;
-		// if (typeof rated === 'string' && rated.startsWith("Smogon Premier League")) {
-		// 	if (gen <= 1) bg = 'fx/bg-gen1-spl.png';
-		// 	else if (gen <= 2) bg = 'fx/bg-gen2-spl.png';
-		// 	else if (gen <= 3) bg = 'fx/bg-gen3-spl.png';
-		// 	else if (gen <= 4) bg = 'fx/bg-gen4-spl.png';
-		// 	else bg = 'fx/bg-spl.png';
-		// 	this.setBgm(-101);
-		// } else if (typeof rated === 'string' && rated.startsWith('National Pokemon Association')) {
-		// 	bg = 'fx/bg-npa.png';
-		// 	this.setBgm(-101);
-		// } else if (typeof rated === 'string' && rated.startsWith('World Cup of Pokemon')) {
-		// 	bg = 'fx/bg-wcop.png';
-		// 	this.setBgm(-101);
-		// } else if (typeof rated === 'string' && rated.startsWith('Smogon Champions League')) {
-		// 	bg = 'fx/bg-scl.png';
-		// 	this.setBgm(-101);
-		// } else {
-		// 	if (gen <= 1) bg = 'fx/bg-gen1.png?';
-		// 	else if (gen <= 2) bg = 'fx/bg-gen2.png?';
-		// 	else if (gen <= 3) bg = `fx/${BattleBackdropsThree[this.numericId % BattleBackdropsThree.length]}?`;
-		// 	else if (gen <= 4) bg = `fx/${BattleBackdropsFour[this.numericId % BattleBackdropsFour.length]}`;
-		// 	else if (gen <= 5) bg = `fx/${BattleBackdropsFive[this.numericId % BattleBackdropsFive.length]}`;
-		// 	else bg = `sprites/gen6bgs/${BattleBackdrops[this.numericId % BattleBackdrops.length]}`;
-		// }
+		const rated = this.battle.rated;
+		let bg: string;
+		if (typeof rated === 'string' && rated.startsWith("Smogon Premier League")) {
+			if (gen <= 1) bg = 'fx/bg-gen1-spl.png';
+			else if (gen <= 2) bg = 'fx/bg-gen2-spl.png';
+			else if (gen <= 3) bg = 'fx/bg-gen3-spl.png';
+			else if (gen <= 4) bg = 'fx/bg-gen4-spl.png';
+			else bg = 'fx/bg-spl.png';
+			this.setBgm(-101);
+		} else if (typeof rated === 'string' && rated.startsWith('National Pokemon Association')) {
+			bg = 'fx/bg-npa.png';
+			this.setBgm(-101);
+		} else if (typeof rated === 'string' && rated.startsWith('World Cup of Pokemon')) {
+			bg = 'fx/bg-wcop.png';
+			this.setBgm(-101);
+		} else if (typeof rated === 'string' && rated.startsWith('Smogon Champions League')) {
+			bg = 'fx/bg-scl.png';
+			this.setBgm(-101);
+		} else {
+			if (gen <= 1) bg = 'fx/bg-gen1.png?';
+			else if (gen <= 2) bg = 'fx/bg-gen2.png?';
+			else if (gen <= 3) bg = `fx/${BattleBackdropsThree[this.numericId % BattleBackdropsThree.length]}?`;
+			else if (gen <= 4) bg = `fx/${BattleBackdropsFour[this.numericId % BattleBackdropsFour.length]}`;
+			else if (gen <= 5) bg = `fx/${BattleBackdropsFive[this.numericId % BattleBackdropsFive.length]}`;
+			else bg = `sprites/gen6bgs/${BattleBackdrops[this.numericId % BattleBackdrops.length]}`;
+		}
 
-		this.backdropImage = 'fx/bg-gen2.png?';
+		this.backdropImage = bg;
 		if (this.$bg) {
 			this.$bg.css('background-image', `url(${Dex.resourcePrefix}${this.backdropImage})`);
 		}
