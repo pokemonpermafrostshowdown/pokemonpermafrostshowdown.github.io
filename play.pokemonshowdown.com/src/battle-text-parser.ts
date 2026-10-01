@@ -134,7 +134,7 @@ export class BattleTextParser {
 			if ([
 				'ingrain', 'quickguard', 'wideguard', 'craftyshield', 'matblock', 'protect', 'mist', 'safeguard',
 				'electricterrain', 'mistyterrain', 'psychicterrain', 'telepathy', 'stickyhold', 'suctioncups', 'aromaveil',
-				'flowerveil', 'sweetveil', 'disguise', 'safetygoggles', 'protectivepads',
+				'flowerveil', 'sweetveil', 'disguise', 'icyambush', 'safetygoggles', 'protectivepads',
 			].includes(id)) {
 				if (target) {
 					kwArgs.of = pokemon;
@@ -878,6 +878,9 @@ export class BattleTextParser {
 				switch (newSpeciesId) {
 				case 'greninjaash': id = 'battlebond'; break;
 				case 'mimikyubusted': id = 'disguise'; break;
+				case 'cryosectrevealed': id = 'icyambush'; break;
+				case 'stalacmiterevealed': id = 'icyambush'; break;
+				case 'stalacmitemegarevealed': id = 'icyambush'; break;
 				case 'zygardecomplete': id = 'powerconstruct'; break;
 				case 'necrozmaultra': id = 'ultranecroziumz'; break;
 				case 'darmanitanzen': id = 'zenmode'; break;
