@@ -12,6 +12,8 @@ const { Pokedex } = pokedexModule;
 const WIDTH = 64;
 const HEIGHT = 64;
 
+const OUT_DIR_NAMES = ["home", "home-centered", "gen5", "gen5-back"];
+
 const TYPE_COLORS = {
 	Normal: "rgb(168, 168, 120)",
 	Fire: "rgb(240, 128, 48)",
@@ -43,8 +45,8 @@ async function buildPlaceholderSprites() {
 		const formeId = mon.forme ? dexDataModule.toID(mon.forme) : undefined;
 		const fileId = `${baseId}${formeId ? `-${formeId}` : ""}`;
 
-		const path = `play.pokemonshowdown.com/sprites/pokemon/${fileId}.png`;
-		const backPath = `play.pokemonshowdown.com/sprites/pokemon-back/${fileId}.png`;
+		const path = `play.pokemonshowdown.com/sprites/pokemon-temp/${fileId}.png`;
+		const backPath = `play.pokemonshowdown.com/sprites/pokemon-temp-back/${fileId}.png`;
 
 		promises.push(buildPlaceholderSprite(mon, path));
 		promises.push(buildPlaceholderSprite(mon, backPath, true));
@@ -128,8 +130,8 @@ function fillCenteredWrappedText(ctx, text, x, y, maxWidth, lineHeight) {
 }
 
 async function copySpriteDirs() {
-	for (const dirName of ["home", "home-centered", "gen5", "gen5-back"]) {
-		const srcDir = `play.pokemonshowdown.com/sprites/pokemon${
+	for (const dirName of OUT_DIR_NAMES) {
+		const srcDir = `play.pokemonshowdown.com/sprites/pokemon-temp${
 			dirName.includes("-back") ? "-back" : ""
 		}`;
 		const destDir = `play.pokemonshowdown.com/sprites/${dirName}`;
@@ -138,4 +140,29 @@ async function copySpriteDirs() {
 	}
 }
 
-buildPlaceholderSprites().then(() => copySpriteDirs());
+async function main() {
+	for (const outDirName of OUT_DIR_NAMES) {
+		await fsPromises.rm(`play.pokemonshowdown.com/sprites/${outDirName}`, { recursive: true });
+	}
+
+	const srcDir = "play.pokemonshowdown.com/sprites/pokemon";
+	const srcAndTempDir = "play.pokemonshowdown.com/sprites/pokemon-temp";
+
+	const srcBackDir = "play.pokemonshowdown.com/sprites/pokemon-back";
+	const srcAndTempBackDir = "play.pokemonshowdown.com/sprites/pokemon-temp-back";
+
+	await Promise.all([
+		fsPromises.cp(srcDir, srcAndTempDir, { recursive: true }),
+		fsPromises.cp(srcBackDir, srcAndTempBackDir, { recursive: true }),
+	]);
+
+	await buildPlaceholderSprites();
+	await copySpriteDirs();
+
+	await Promise.all([
+		fsPromises.rm(srcAndTempDir, { recursive: true }),
+		fsPromises.rm(srcAndTempBackDir, { recursive: true }),
+	]);
+}
+
+await main();
