@@ -49,7 +49,7 @@ export interface PSConfig {
 	routes: {
 		root: string,
 		client: string,
-    login: string,
+		login: string,
 		dex: string,
 		replays: string,
 		users: string,
