@@ -800,7 +800,7 @@ function toId() {
 				var protocol = (Config.server.port === 443 || Config.server.https) ? 'https' : 'http';
 				Config.server.host = $.trim(Config.server.host);
 				try {
-					if (Config.server.host === 'localhost' || true) {
+					if (Config.server.host === 'localhost') {
 						// connecting to localhost from psim.us is now banned as of Chrome 94
 						// thanks Docker for having vulns
 						// https://wicg.github.io/cors-rfc1918
