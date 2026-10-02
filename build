@@ -84,3 +84,5 @@ if (full) {
 }
 
 execSync(`node ./build-tools/update` + full, options);
+
+execSync(`./build-tools/build-pages` + full, options);
